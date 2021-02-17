@@ -1,0 +1,11 @@
+version: "3"
+services:
+  latex:
+    build: .
+    tty: true
+    volumes:
+      - ../workdir:/root/workdir:cached
+      - ~/.ssh:/root/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+    environment:
+      - HOME=/root

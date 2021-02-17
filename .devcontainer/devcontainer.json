@@ -1,0 +1,50 @@
+{
+  "name": "LaTeX Docker",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "latex",
+  "workspaceFolder": "/root/workdir",
+  "extensions": ["james-yu.latex-workshop"],
+  "settings": {
+    "latex-workshop.latex.recipes": [
+      // one on the top will be run by "latex-workshop.latex.autoBuild.run"
+      {
+        "name": "platex (once)",
+        "tools": ["platex", "dvipdfmx"]
+      },
+      {
+        "name": "platex (twice)",
+        "tools": ["platex", "platex", "dvipdfmx"]
+      },
+      {
+        "name": "platex (bib)",
+        "tools": ["platex", "upbibtex", "platex", "platex", "dvipdfmx"]
+      }
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "platex",
+        "command": "platex",
+        "args": [
+          "-halt-on-error",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-synctex=1",
+          "%DOC%"
+        ]
+      },
+      {
+        "name": "upbibtex",
+        "command": "upbibtex",
+        "args": ["%DOCFILE%"]
+      },
+      {
+        "name": "dvipdfmx",
+        "command": "dvipdfmx",
+        "args": ["%DOC%.dvi"]
+      }
+    ],
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.autoBuild.interval": 0,
+    "latex-workshop.view.pdf.viewer": "browser" // or "tab"
+  }
+}
