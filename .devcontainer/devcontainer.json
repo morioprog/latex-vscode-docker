@@ -45,6 +45,6 @@
     ],
     "latex-workshop.latex.autoBuild.run": "onFileChange",
     "latex-workshop.latex.autoBuild.interval": 0,
-    "latex-workshop.view.pdf.viewer": "browser" // or "tab"
+    "latex-workshop.view.pdf.viewer": "tab" // or "browser"
   }
 }
