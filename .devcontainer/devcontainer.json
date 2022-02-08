@@ -2,22 +2,37 @@
   "name": "LaTeX Docker",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "latex",
-  "workspaceFolder": "/root/workdir",
-  "extensions": ["james-yu.latex-workshop"],
+  "workspaceFolder": "/home/dev/workdir",
+  "extensions": [
+    "james-yu.latex-workshop"
+  ],
   "settings": {
     "latex-workshop.latex.recipes": [
       // one on the top will be run by "latex-workshop.latex.autoBuild.run"
       {
         "name": "platex (once)",
-        "tools": ["platex", "dvipdfmx"]
+        "tools": [
+          "platex",
+          "dvipdfmx"
+        ]
       },
       {
         "name": "platex (twice)",
-        "tools": ["platex", "platex", "dvipdfmx"]
+        "tools": [
+          "platex",
+          "platex",
+          "dvipdfmx"
+        ]
       },
       {
         "name": "platex (bib)",
-        "tools": ["platex", "upbibtex", "platex", "platex", "dvipdfmx"]
+        "tools": [
+          "platex",
+          "upbibtex",
+          "platex",
+          "platex",
+          "dvipdfmx"
+        ]
       }
     ],
     "latex-workshop.latex.tools": [
@@ -35,12 +50,16 @@
       {
         "name": "upbibtex",
         "command": "upbibtex",
-        "args": ["%DOCFILE%"]
+        "args": [
+          "%DOCFILE%"
+        ]
       },
       {
         "name": "dvipdfmx",
         "command": "dvipdfmx",
-        "args": ["%DOC%.dvi"]
+        "args": [
+          "%DOC%.dvi"
+        ]
       }
     ],
     "latex-workshop.latex.autoBuild.run": "onFileChange",

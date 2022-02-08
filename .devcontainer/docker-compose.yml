@@ -1,11 +1,25 @@
 version: "3"
 services:
   latex:
-    build: .
+    env_file: .env
+    environment:
+      HOME: /home/dev
+    build:
+      context: .
+      args:
+        USER_NAME: dev
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
     tty: true
     volumes:
-      - ../workdir:/root/workdir:cached
-      - ~/.ssh:/root/.ssh
-      - ~/.gitconfig:/root/.gitconfig
-    environment:
-      - HOME=/root
+      - type: bind
+        source: ../workdir
+        target: /home/dev/workdir
+      - type: bind
+        source: ~/.ssh
+        target: /home/dev/.ssh
+        read_only: true
+      - type: bind
+        source: ~/.config
+        target: /home/dev/.config
+        read_only: true
